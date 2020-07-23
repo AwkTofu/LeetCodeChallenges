@@ -21,32 +21,56 @@ Explanation: 342 + 465 = 807.
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var addTwoNumbers = function(l1, l2) {
-     console.log(l1)
+var addTwoNumbers = function(l1, l2, carry) {
+    console.log(l1)
     console.log(l2)
+    console.log(carry != null)
     
-    var test = new ListNode(); 
-    test.val(4);
-    console.log("test", test)
-    
-    
-    let i = 0;
-    let result = l1;
+    /*let result = new ListNode(); 
     let carryOver = 0;
-    console.log("len", l2.val, l2.next, l2.next)
-    l2.data
-    while (i < l2.length)
+    console.log("len", l2.val, l2.next, l2.next.next)
+    
+    while (l1 != null)
     {
-        let num = result[i] + l2[i];
-        if (num >= 10)
+        console.log("current l1", l1.val, "current l2", l2.val);
+        let val = l1.val + l2.val + carryOver;
+        carryOver = 0;
+        if (val >= 10)
         {
-            num -= 10;
+            val -= 10;
             carryOver = 1;
         }
-        console.log("num:", num, "carryOver:", carryOver);
-        result[i] = num + carryOver;
-        carryOver = 0;
+        console.log("val", val)
+        l1 = l1.next;
+        l2 = l2.next;
+        result.next = new ListNode(val);
+        result= result.next
+        console.log("result", result);
+    }*/
+    let result = null;
+    
+    if (l1 || l2)
+    {
+        
+        let val =  l1.val + l2.val;
+        
+        if (carry != null)
+            val += carry;
+        let nextCarry = null;
+        
+        if (val >= 10)
+        {
+            val -= 10
+            nextCarry = 1; 
+        }
+        
+        console.log("val", val, "carry", nextCarry)
+        
+        result = new ListNode(val)
+        result.next = addTwoNumbers(l1.next, l2.next, nextCarry)
     }
+    
+    
     
     return result;
 };
