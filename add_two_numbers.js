@@ -69,7 +69,8 @@ var addTwoNumbers = function(l1, l2, carry) {
         result = new ListNode(val)
         result.next = addTwoNumbers(l1.next, l2.next, nextCarry)
     }
-    
+    else if (carry != null)
+        result = new ListNode(1);
     
     
     return result;
