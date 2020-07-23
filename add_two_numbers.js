@@ -51,10 +51,11 @@ var addTwoNumbers = function(l1, l2, carry) {
     
     if (l1 || l2)
     {
+        let val1 = l1 ? l1.val : 0
+        let val2 = l2 ? l2.val : 0
+        let val =  val1 + val2;
         
-        let val =  l1.val + l2.val;
-        
-        if (carry != null)
+        if (carry)
             val += carry;
         let nextCarry = null;
         
@@ -64,10 +65,10 @@ var addTwoNumbers = function(l1, l2, carry) {
             nextCarry = 1; 
         }
         
-        console.log("val", val, "carry", nextCarry)
-        
         result = new ListNode(val)
-        result.next = addTwoNumbers(l1.next, l2.next, nextCarry)
+        let next1 = l1 ? l1.next : null
+        let next2 = l2 ? l2.next : null
+        result.next = addTwoNumbers(next1, next2, nextCarry)
     }
     else if (carry != null)
         result = new ListNode(1);
