@@ -23,5 +23,42 @@ Explanation: The answer is "wke", with the length of 3.
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
+    let longestLength = 0;
     
+    //let longestStartIndex = 0;
+    //let longestWord = "";
+    
+    let charRepeated = false;    
+    let currentWord = "";
+    let currentLength = 0;
+    
+    let currentIndex = 0;
+    while (currentIndex < s.length)
+    {
+
+        console.log("Current: ", currentWord, " | currentIndex: ", currentIndex)
+        let currentChar = s.charAt(currentIndex);
+        
+        console.log("Char:", currentChar, currentWord.includes(currentChar));
+        
+        if (currentWord.includes(currentChar)) //True if repeated
+        {            
+            console.log("Current: ", currentLength, "Longest:", longestLength);
+            if (currentLength > longestLength)
+            {
+                longestLength = currentLength;
+            }
+            currentWord = "";
+            currentLength = 0;
+        }
+        else //Character doesn't exist in the current Word;
+        {
+            currentWord += currentChar;
+            currentLength++;
+        }
+        currentIndex++;
+    }
+    
+    console.log(longestLength)
+    return longestLength;
 };
