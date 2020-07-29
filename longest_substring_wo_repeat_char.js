@@ -24,11 +24,7 @@ Explanation: The answer is "wke", with the length of 3.
  */
 var lengthOfLongestSubstring = function(s) {
     let longestLength = 0;
-    
-    //let longestStartIndex = 0;
-    //let longestWord = "";
-    
-    let charRepeated = false;    
+    //var s = "aab"
     let currentWord = "";
     let currentLength = 0;
     
@@ -36,20 +32,17 @@ var lengthOfLongestSubstring = function(s) {
     while (currentIndex < s.length)
     {
 
-        console.log("Current: ", currentWord, " | currentIndex: ", currentIndex)
         let currentChar = s.charAt(currentIndex);
         
-        console.log("Char:", currentChar, currentWord.includes(currentChar));
         
         if (currentWord.includes(currentChar)) //True if repeated
-        {            
-            console.log("Current: ", currentLength, "Longest:", longestLength);
+        { 
             if (currentLength > longestLength)
             {
                 longestLength = currentLength;
             }
-            currentWord = "";
-            currentLength = 0;
+            currentWord = currentChar;
+            currentLength = 1;
         }
         else //Character doesn't exist in the current Word;
         {
@@ -58,7 +51,8 @@ var lengthOfLongestSubstring = function(s) {
         }
         currentIndex++;
     }
-    
-    console.log(longestLength)
+    console.log("Word:", s, "currentLen",currentLength, "longestLen:", longestLength)
+    if (currentLength > longestLength)
+        return currentLength;
     return longestLength;
 };
